@@ -1,8 +1,8 @@
 ﻿  main.cpp
   코드를 생성하고 있습니다.
-  35 of 3356 functions ( 1.0%) were compiled, the rest were copied from previous compilation.
+  29 of 3356 functions ( 0.9%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+    37 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
-  JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.exe
-  JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.pdb (Full PDB)
+  JaraffeEngine.vcxproj -> D:\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.exe
+  JaraffeEngine.vcxproj -> D:\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.pdb (Full PDB)
