@@ -10,8 +10,9 @@
       <Filter>Source</Filter>
     </ClCompile>
     <ClCompile Include="stdafx.cpp" />
-    <ClCompile Include="Core\Allocator\TBB\TBBAllocator.cpp" />
     <ClCompile Include="Core\Memory\Memory.cpp" />
+    <ClCompile Include="Core\Memory\Allocator\TBB\TBBAllocator.cpp" />
+    <ClCompile Include="Core\Memory\Allocator\OS\Windows\WindowsAllocator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -20,10 +21,12 @@
   <ItemGroup>
     <ClInclude Include="Core\Ansi.h" />
     <ClInclude Include="stdafx.h" />
-    <ClInclude Include="Core\Allocator\TBB\TBBAllocator.h" />
-    <ClInclude Include="Core\Allocator\BaseAllocator.h" />
     <ClInclude Include="Core\Memory\Memory.h" />
     <ClInclude Include="Core\CoreGlobal.h" />
     <ClInclude Include="Common\GlobalMacro.h" />
+    <ClInclude Include="Core\Memory\Allocator\OS\Windows\WindowsAllocator.h" />
+    <ClInclude Include="Core\Memory\Allocator\TBB\TBBAllocator.h" />
+    <ClInclude Include="Core\Memory\Allocator\BaseAllocator.h" />
+    <ClInclude Include="Core\Memory\Allocator\OS\PlatformAllocator.h" />
   </ItemGroup>
 </Project>
