@@ -146,7 +146,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Memory\Allocator\OS\Windows\WindowsAllocator.cpp" />
+    <ClCompile Include="Core\CoreGlobal.cpp" />
+    <ClCompile Include="Core\AppWindow\OS\GLFWWindow.cpp" />
+    <ClCompile Include="Core\AppWindow\GenericWindow.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Core\Memory\Memory.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -154,6 +156,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="Core\Memory\Allocator\TBB\TBBAllocator.cpp" />
+    <ClCompile Include="Core\Memory\Allocator\System\SystemAllocator.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -162,13 +165,12 @@
   <ItemGroup>
     <ClInclude Include="Common\GlobalMacro.h" />
     <ClInclude Include="Core\CoreGlobal.h" />
-    <ClInclude Include="Core\Memory\Allocator\BaseAllocator.h" />
-    <ClInclude Include="Core\Ansi.h" />
-    <ClInclude Include="Core\Memory\Allocator\OS\PlatformAllocator.h" />
-    <ClInclude Include="Core\Memory\Allocator\OS\Windows\WindowsAllocator.h" />
     <ClInclude Include="Core\Memory\Memory.h" />
+    <ClInclude Include="Core\AppWindow\OS\GLFWWindow.h" />
+    <ClInclude Include="Core\AppWindow\GenericWindow.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Core\Memory\Allocator\TBB\TBBAllocator.h" />
+    <ClInclude Include="Core\Memory\Allocator\System\SystemAllocator.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

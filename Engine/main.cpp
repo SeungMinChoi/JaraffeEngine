@@ -15,19 +15,8 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include <tiny_obj_loader.h>
 
-#include <iostream>
-#include <fstream>
-#include <stdexcept>
-#include <algorithm>
-#include <chrono>
-#include <vector>
-#include <cstring>
-#include <array>
-#include <set>
-#include <unordered_map>
-
-const int WIDTH = 800;
-const int HEIGHT = 600;
+#include "Core/AppWindow/GenericWindow.h"
+#include "Core/AppWindow/OS/GLFWWindow.h"
 
 const std::string MODEL_PATH = "../Resource/Models/chalet.obj";
 const std::string TEXTURE_PATH = "../Resource/Textures/chalet.jpg";
@@ -142,7 +131,7 @@ public:
 	}
 
 private:
-	GLFWwindow* window;
+	GenericWindow* window;
 
 	VkInstance instance;
 	VkDebugReportCallbackEXT callback;
@@ -195,15 +184,12 @@ private:
 	VkSemaphore imageAvailableSemaphore;
 	VkSemaphore renderFinishedSemaphore;
 
-	void initWindow() {
-		glfwInit();
+	void initWindow()
+	{
+		window = new GLFWWindow(800, 600);
+		window->CreateWindow();
 
-		glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
-
-		window = glfwCreateWindow(WIDTH, HEIGHT, "Vulkan", nullptr, nullptr);
-
-		glfwSetWindowUserPointer(window, this);
-		glfwSetWindowSizeCallback(window, HelloTriangleApplication::onWindowResized);
+		window->SetCallBackWindowResized(std::bind(std::mem_fn(&HelloTriangleApplication::onWindowResized), this, std::placeholders::_1, std::placeholders::_2));
 	}
 
 	void initVulkan() {
@@ -233,9 +219,11 @@ private:
 		createSemaphores();
 	}
 
-	void mainLoop() {
-		while (!glfwWindowShouldClose(window)) {
-			glfwPollEvents();
+	void mainLoop() 
+	{
+		while (!window->WindowShouldClose())
+		{
+			//glfwPollEvents();
 
 			updateUniformBuffer();
 			drawFrame();
@@ -297,19 +285,22 @@ private:
 		vkDestroySurfaceKHR(instance, surface, nullptr);
 		vkDestroyInstance(instance, nullptr);
 
-		glfwDestroyWindow(window);
+		window->CloseWindow();
+		SAFE_DELETE(window);
 
 		glfwTerminate();
 	}
 
-	static void onWindowResized(GLFWwindow* window, int width, int height) {
-		if (width == 0 || height == 0) return;
+	void onWindowResized(int width, int height) 
+	{
+		if (width == 0 || height == 0) 
+			return;
 
-		HelloTriangleApplication* app = reinterpret_cast<HelloTriangleApplication*>(glfwGetWindowUserPointer(window));
-		app->recreateSwapChain();
+		recreateSwapChain();
 	}
 
-	void recreateSwapChain() {
+	void recreateSwapChain() 
+	{
 		vkDeviceWaitIdle(device);
 
 		cleanupSwapChain();
@@ -371,7 +362,7 @@ private:
 	}
 
 	void createSurface() {
-		if (glfwCreateWindowSurface(instance, window, nullptr, &surface) != VK_SUCCESS) {
+		if (glfwCreateWindowSurface(instance, (GLFWwindow*)window->GetHandle(), nullptr, &surface) != VK_SUCCESS) {
 			throw std::runtime_error("failed to create window surface!");
 		}
 	}
@@ -1394,7 +1385,7 @@ private:
 		}
 		else {
 			int width, height;
-			glfwGetWindowSize(window, &width, &height);
+			window->GetWindowSize(width, height);
 
 			VkExtent2D actualExtent = {
 				static_cast<uint32_t>(width),
@@ -1565,7 +1556,10 @@ private:
 	}
 };
 
-int main() {
+
+
+int main() 
+{
 	HelloTriangleApplication app;
 
 	try {

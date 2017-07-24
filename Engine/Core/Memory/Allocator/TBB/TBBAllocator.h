@@ -1,15 +1,13 @@
 #pragma once
 
-#include "../BaseAllocator.h"
-
-class TBBAllocator : public Allocator
+class TBBAllocator
 {
-public:
+private:
     TBBAllocator();
-    virtual ~TBBAllocator();
+    ~TBBAllocator();
 
 public:
-    virtual void* Malloc(size_t Size) override;
-    virtual void* Realloc(void* Original, size_t Size) override;
-    virtual void Free(void* Original) override;
+    static void* Malloc(size_t Size);
+	static void* Realloc(void* Original, size_t Size);
+	static void Free(void* Original);
 };
