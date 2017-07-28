@@ -1,5 +1,4 @@
 # JaraffeEngine
-New Engine Project 
 
 - Jaraffe Engine 할일 -
 1. Vulkan 1차 구조화
