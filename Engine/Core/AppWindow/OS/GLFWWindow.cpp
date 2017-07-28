@@ -1,10 +1,8 @@
 #include "stdafx.h"
 #include "GLFWWindow.h"
 
-#include <GLFW/glfw3.h>
-
-GLFWWindow::GLFWWindow(int Width, int Height)
-	: GenericWindow(Width, Height)
+GLFWWindow::GLFWWindow(std::string WindowName, int32_t Width, int32_t Height)
+	: GenericWindow(WindowName, Width, Height)
 {
 }
 
@@ -18,7 +16,7 @@ void GLFWWindow::CreateWindow()
 
 	glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
 
-	m_Window = glfwCreateWindow(m_Width, m_Height, "Vulkan", nullptr, nullptr);
+	m_Window = glfwCreateWindow(m_Width, m_Height, m_WindowName.c_str(), nullptr, nullptr);
 }
 
 void GLFWWindow::CloseWindow()
@@ -36,12 +34,12 @@ void GLFWWindow::SetCallBackWindowResized(WindowResizeCallBack Callback)
 	glfwSetWindowSizeCallback(m_Window, OnWindowResized);
 }
 
-void GLFWWindow::OnWindowResized(GLFWwindow* Window, int Width, int Height)
+void GLFWWindow::OnWindowResized(GLFWwindow* Window, int32_t Width, int32_t Height)
 {
-	GLFWWindow* app = reinterpret_cast<GLFWWindow*>(glfwGetWindowUserPointer(Window));
-	app->m_Width = Width;
-	app->m_Height = Height;
-	app->m_cbWindowResized(Width, Height);
+	GLFWWindow* m_Window = reinterpret_cast<GLFWWindow*>(glfwGetWindowUserPointer(Window));
+	m_Window->m_Width = Width;
+	m_Window->m_Height = Height;
+	m_Window->m_cbWindowResized(Width, Height);
 }
 
 void* GLFWWindow::GetHandle()

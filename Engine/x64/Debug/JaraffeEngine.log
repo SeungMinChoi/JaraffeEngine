@@ -1,3 +1,6 @@
-﻿  main.cpp
+﻿  VulkanSwapchain.cpp
+  VulkanDevice.cpp
+  코드를 생성하고 있습니다...
+LINK : warning LNK4098: 'MSVCRT' defaultlib가 다른 라이브러리와 충돌합니다. /NODEFAULTLIB:library를 사용하십시오.
   JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Debug\JaraffeEngine.exe
   JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Debug\JaraffeEngine.pdb (Full PDB)

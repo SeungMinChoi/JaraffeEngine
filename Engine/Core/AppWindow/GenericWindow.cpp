@@ -1,8 +1,9 @@
 #include "stdafx.h"
 #include "GenericWindow.h"
 
-GenericWindow::GenericWindow(int Width, int Height)
-	: m_Width(Width)
+GenericWindow::GenericWindow(std::string WindowName, int32_t Width, int32_t Height)
+	: m_WindowName(WindowName)
+	, m_Width(Width)
 	, m_Height(Height)
 {
 }
@@ -11,7 +12,7 @@ GenericWindow::~GenericWindow()
 {
 }
 
-void GenericWindow::GetWindowSize(int& OutWidth, int& OutHeight)
+void GenericWindow::GetWindowSize(int32_t& OutWidth, int32_t& OutHeight)
 {
 	OutWidth = m_Width;
 	OutHeight = m_Height;

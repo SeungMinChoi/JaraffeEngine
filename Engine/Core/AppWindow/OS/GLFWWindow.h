@@ -5,7 +5,7 @@ struct GLFWwindow;
 class GLFWWindow : public GenericWindow
 {
 public:
-	GLFWWindow(int Width, int Height);
+	GLFWWindow(std::string WindowName, int32_t Width, int32_t Height);
 	virtual ~GLFWWindow();
 
 public:
@@ -19,7 +19,7 @@ public:
 	virtual void SetCallBackWindowResized(WindowResizeCallBack Callback) override;
 
 protected:
-	static void OnWindowResized(GLFWwindow* Window, int Width, int Height);
+	static void OnWindowResized(GLFWwindow* Window, int32_t Width, int32_t Height);
 
 private:
 	GLFWwindow* m_Window;

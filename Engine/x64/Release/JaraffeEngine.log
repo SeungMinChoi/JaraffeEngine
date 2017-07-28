@@ -1,8 +1,9 @@
-﻿  main.cpp
+﻿  VulkanDevice.cpp
+  VulkanRenderer.cpp
   코드를 생성하고 있습니다.
-  9 of 3515 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    6 functions had inline decision re-evaluated but remain unchanged
+  99 of 210 functions (47.1%) were compiled, the rest were copied from previous compilation.
+    8 functions were new in current compilation
+    44 functions had inline decision re-evaluated but remain unchanged
   코드를 생성했습니다.
   JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.exe
   JaraffeEngine.vcxproj -> C:\Users\ccm13\Desktop\MyProjects\NewProject\JaraffeEngine\x64\Release\JaraffeEngine.pdb (Full PDB)

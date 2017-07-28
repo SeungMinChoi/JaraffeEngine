@@ -149,6 +149,7 @@
     <ClCompile Include="Core\CoreGlobal.cpp" />
     <ClCompile Include="Core\AppWindow\OS\GLFWWindow.cpp" />
     <ClCompile Include="Core\AppWindow\GenericWindow.cpp" />
+    <ClCompile Include="Core\GraphicDevice\GenericGraphicDevice.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Core\Memory\Memory.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -157,6 +158,12 @@
     </ClCompile>
     <ClCompile Include="Core\Memory\Allocator\TBB\TBBAllocator.cpp" />
     <ClCompile Include="Core\Memory\Allocator\System\SystemAllocator.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanDevice.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanPhysicalDevice.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanInstance.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanExtensionsInfo.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSurface.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -164,13 +171,21 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Common\GlobalMacro.h" />
+    <ClInclude Include="Config\EngineConfig.h" />
     <ClInclude Include="Core\CoreGlobal.h" />
     <ClInclude Include="Core\Memory\Memory.h" />
     <ClInclude Include="Core\AppWindow\OS\GLFWWindow.h" />
     <ClInclude Include="Core\AppWindow\GenericWindow.h" />
+    <ClInclude Include="Core\GraphicDevice\GenericGraphicDevice.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Core\Memory\Allocator\TBB\TBBAllocator.h" />
     <ClInclude Include="Core\Memory\Allocator\System\SystemAllocator.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanDevice.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanPhysicalDevice.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanInstance.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanExtensionsInfo.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSurface.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
