@@ -23,6 +23,9 @@
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanPhysicalDevice.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSurface.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.cpp" />
+    <ClCompile Include="Core\File\GenericFile.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -45,5 +48,8 @@
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanPhysicalDevice.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSurface.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.h" />
+    <ClInclude Include="Core\File\GenericFile.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanPipeline.h" />
   </ItemGroup>
 </Project>

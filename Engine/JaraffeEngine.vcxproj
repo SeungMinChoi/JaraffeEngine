@@ -150,6 +150,7 @@
     <ClCompile Include="Core\AppWindow\OS\GLFWWindow.cpp" />
     <ClCompile Include="Core\AppWindow\GenericWindow.cpp" />
     <ClCompile Include="Core\GraphicDevice\GenericGraphicDevice.cpp" />
+    <ClCompile Include="Core\File\GenericFile.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Core\Memory\Memory.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -164,6 +165,8 @@
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanExtensionsInfo.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSurface.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanPipeline.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -177,6 +180,7 @@
     <ClInclude Include="Core\AppWindow\OS\GLFWWindow.h" />
     <ClInclude Include="Core\AppWindow\GenericWindow.h" />
     <ClInclude Include="Core\GraphicDevice\GenericGraphicDevice.h" />
+    <ClInclude Include="Core\File\GenericFile.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="Core\Memory\Allocator\TBB\TBBAllocator.h" />
     <ClInclude Include="Core\Memory\Allocator\System\SystemAllocator.h" />
@@ -186,6 +190,8 @@
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanExtensionsInfo.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSurface.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSwapchain.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanPipeline.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

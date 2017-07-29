@@ -13,6 +13,8 @@ public:
 	void Init(VulkanDevice* Device, VulkanPhysicalDevice* PhysicalDevice, VulkanSurface* Surface);
 	void Destroy(VulkanDevice* Device);
 
+	VkFormat GetImageFormat() { return m_SwapChainImageFormat; }
+
 private:
 	void CreateSwapChain(VulkanDevice* Device, VulkanPhysicalDevice* PhysicalDevice, VulkanSurface* Surface);
 	void CreateImageViews(VulkanDevice* Device);
@@ -24,7 +26,7 @@ private:
 	VkPresentModeKHR ChooseSwapPresentMode(const std::vector<VkPresentModeKHR> AvailablePresentModes);
 	VkSurfaceFormatKHR ChooseSwapSurfaceFormat(const std::vector<VkSurfaceFormatKHR>& AvailableFormats);
 
-public:
+private:
 	VkSwapchainKHR m_SwapChain;
 	VkFormat m_SwapChainImageFormat;
 	VkExtent2D m_SwapChainExtent;
