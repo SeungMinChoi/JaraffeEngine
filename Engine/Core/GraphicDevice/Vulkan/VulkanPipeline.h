@@ -1,5 +1,7 @@
 #pragma once
 
+// TODO : 필요에 의한 리펙토링 필요.
+
 class VulkanDevice;
 class VulkanSwapChain;
 class VulkanShaderModule;
@@ -11,6 +13,9 @@ public:
 
 public:
 	void Destroy(VulkanDevice* Device);
+
+	VkRenderPass GetRenderPass() { return m_RenderPass; }
+	VkPipeline GetGraphicsPipeline() { return m_GraphicsPipeline; }
 
 public:
 	void CreateViewportState(const uint32_t Width, const uint32_t Height);
@@ -39,16 +44,20 @@ public:
 
 	void CreateGraphicsPipeline(VulkanDevice* Device);
 
-	void BindShader(const VkShaderStageFlagBits ShaderStageFlag, VulkanShaderModule* ShaderModule, const std::string& EntryPointName);
+	void BindShader(const VkShaderStageFlagBits ShaderStageFlag, VulkanShaderModule* ShaderModule, const char* EntryPointName);
 
 private:
 	VkPipelineLayout m_PipelineLayout;
 	VkRenderPass m_RenderPass;
 	VkPipeline m_GraphicsPipeline;
 
+	VkViewport m_Viewport = {};
+	VkRect2D m_Scissor = {};
+	VkPipelineColorBlendAttachmentState m_ColorBlendAttachment;	// TODO 이후 vector 로 추가 가능하도록 변경.
+
+	VkPipelineViewportStateCreateInfo m_ViewportState = {};
 	VkPipelineInputAssemblyStateCreateInfo m_InputAssemblyState = {};
 	VkPipelineVertexInputStateCreateInfo m_VertexInputState = {};
-	VkPipelineViewportStateCreateInfo m_ViewportState = {};
 	VkPipelineRasterizationStateCreateInfo m_RasterizationState = {};
 	VkPipelineMultisampleStateCreateInfo m_MultisampleState = {};
 	VkPipelineColorBlendStateCreateInfo m_ColorBlendState = {};

@@ -26,23 +26,21 @@ void VulkanPipeline::CreateViewportState(const uint32_t Width, const uint32_t He
 	extent.width = Width;
 	extent.height = Height;
 
-	VkViewport viewport = {};
-	viewport.x = 0.0f;
-	viewport.y = 0.0f;
-	viewport.width = (float)Width;
-	viewport.height = (float)Height;
-	viewport.minDepth = 0.0f;
-	viewport.maxDepth = 1.0f;
+	m_Viewport.x = 0.0f;
+	m_Viewport.y = 0.0f;
+	m_Viewport.width = (float)Width;
+	m_Viewport.height = (float)Height;
+	m_Viewport.minDepth = 0.0f;
+	m_Viewport.maxDepth = 1.0f;
 
-	VkRect2D scissor = {};
-	scissor.offset = { 0, 0 };
-	scissor.extent = extent;
+	m_Scissor.offset = { 0, 0 };
+	m_Scissor.extent = extent;
 
 	m_ViewportState.sType = VK_STRUCTURE_TYPE_PIPELINE_VIEWPORT_STATE_CREATE_INFO;
 	m_ViewportState.viewportCount = 1;
-	m_ViewportState.pViewports = &viewport;
+	m_ViewportState.pViewports = &m_Viewport;
 	m_ViewportState.scissorCount = 1;
-	m_ViewportState.pScissors = &scissor;
+	m_ViewportState.pScissors = &m_Scissor;
 }
 
 void VulkanPipeline::CreateInputAssemblyState(const VkPrimitiveTopology PrimitiveTopology, const bool PrimitiveRestartEnable)
@@ -96,21 +94,20 @@ void VulkanPipeline::CreateMultisampleState()
 
 void VulkanPipeline::CreateColorBlendAttachmentState()
 {
-	VkPipelineColorBlendAttachmentState colorBlendAttachment = {};
-	colorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
-	colorBlendAttachment.blendEnable = VK_FALSE;
-	colorBlendAttachment.srcColorBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
-	colorBlendAttachment.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
-	colorBlendAttachment.colorBlendOp = VK_BLEND_OP_ADD; // Optional
-	colorBlendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
-	colorBlendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
-	colorBlendAttachment.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
+	m_ColorBlendAttachment.colorWriteMask = VK_COLOR_COMPONENT_R_BIT | VK_COLOR_COMPONENT_G_BIT | VK_COLOR_COMPONENT_B_BIT | VK_COLOR_COMPONENT_A_BIT;
+	m_ColorBlendAttachment.blendEnable = VK_FALSE;
+	m_ColorBlendAttachment.srcColorBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	m_ColorBlendAttachment.dstColorBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
+	m_ColorBlendAttachment.colorBlendOp = VK_BLEND_OP_ADD; // Optional
+	m_ColorBlendAttachment.srcAlphaBlendFactor = VK_BLEND_FACTOR_ONE; // Optional
+	m_ColorBlendAttachment.dstAlphaBlendFactor = VK_BLEND_FACTOR_ZERO; // Optional
+	m_ColorBlendAttachment.alphaBlendOp = VK_BLEND_OP_ADD; // Optional
 
 	m_ColorBlendState.sType = VK_STRUCTURE_TYPE_PIPELINE_COLOR_BLEND_STATE_CREATE_INFO;
 	m_ColorBlendState.logicOpEnable = VK_FALSE;
 	m_ColorBlendState.logicOp = VK_LOGIC_OP_COPY; // Optional
 	m_ColorBlendState.attachmentCount = 1;
-	m_ColorBlendState.pAttachments = &colorBlendAttachment;
+	m_ColorBlendState.pAttachments = &m_ColorBlendAttachment;
 	m_ColorBlendState.blendConstants[0] = 0.0f; // Optional
 	m_ColorBlendState.blendConstants[1] = 0.0f; // Optional
 	m_ColorBlendState.blendConstants[2] = 0.0f; // Optional
@@ -168,12 +165,21 @@ void VulkanPipeline::CreateRenderPass(VulkanDevice* Device, VulkanSwapChain* Swa
 	subpass.colorAttachmentCount = 1;
 	subpass.pColorAttachments = &colorAttachmentRef;
 
+	VkSubpassDependency dependency = {};
+	dependency.srcSubpass = VK_SUBPASS_EXTERNAL;
+	dependency.dstSubpass = 0;
+	dependency.srcStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.srcAccessMask = 0;
+	dependency.dstStageMask = VK_PIPELINE_STAGE_COLOR_ATTACHMENT_OUTPUT_BIT;
+	dependency.dstAccessMask = VK_ACCESS_COLOR_ATTACHMENT_READ_BIT | VK_ACCESS_COLOR_ATTACHMENT_WRITE_BIT;
+
 	VkRenderPassCreateInfo renderPassInfo = {};
 	renderPassInfo.sType = VK_STRUCTURE_TYPE_RENDER_PASS_CREATE_INFO;
 	renderPassInfo.attachmentCount = 1;
 	renderPassInfo.pAttachments = &colorAttachment;
 	renderPassInfo.subpassCount = 1;
 	renderPassInfo.pSubpasses = &subpass;
+	renderPassInfo.pDependencies = &dependency;
 
 	if (vkCreateRenderPass(Device->GetDevice(), &renderPassInfo, nullptr, &m_RenderPass) != VK_SUCCESS)
 	{
@@ -205,15 +211,20 @@ void VulkanPipeline::CreateGraphicsPipeline(VulkanDevice* Device)
 	{
 		throw std::runtime_error("failed to create graphics pipeline!");
 	}
+
+	for (int32_t i = 0; i < m_ShaderStages.size(); ++i)
+	{
+		vkDestroyShaderModule(Device->GetDevice(), m_ShaderStages[i].module, nullptr);
+	}
 }
 
-void VulkanPipeline::BindShader(const VkShaderStageFlagBits ShaderStageFlag, VulkanShaderModule* ShaderModule, const std::string& EntryPointName)
+void VulkanPipeline::BindShader(const VkShaderStageFlagBits ShaderStageFlag, VulkanShaderModule* ShaderModule, const char* EntryPointName)
 {
 	VkPipelineShaderStageCreateInfo shaderStageInfo = {};
 	shaderStageInfo.sType = VK_STRUCTURE_TYPE_PIPELINE_SHADER_STAGE_CREATE_INFO;
 	shaderStageInfo.stage = ShaderStageFlag;
 	shaderStageInfo.module = ShaderModule->GetShaderModule();
-	shaderStageInfo.pName = EntryPointName.c_str();
+	shaderStageInfo.pName = EntryPointName;
 
 	m_ShaderStages.push_back(shaderStageInfo);
 }

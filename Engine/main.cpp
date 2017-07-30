@@ -13,6 +13,8 @@ public:
 
 		m_Window->CreateWindow();
 		m_GraphicDevice->Init(m_Window->GetHandle());
+
+		m_Window->SetCallBackWindowResized(std::bind(std::mem_fn(&TestApp::WindowResize), this, std::placeholders::_1, std::placeholders::_2));
 	}
 
 	void Destroy()
@@ -25,8 +27,14 @@ public:
 	{
 		while (m_Window->WindowShouldClose() == false)
 		{
-			break;
+			glfwPollEvents();
+			m_GraphicDevice->Draw();
 		}
+	}
+
+	void WindowResize(int32_t Width, int32_t Height)
+	{
+		m_GraphicDevice->Resize();
 	}
 
 public:

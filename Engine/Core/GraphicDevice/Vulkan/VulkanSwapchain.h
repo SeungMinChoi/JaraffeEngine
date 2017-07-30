@@ -13,7 +13,10 @@ public:
 	void Init(VulkanDevice* Device, VulkanPhysicalDevice* PhysicalDevice, VulkanSurface* Surface);
 	void Destroy(VulkanDevice* Device);
 
+	std::vector<VkImageView> GetSwapChainImageViews() { return m_SwapChainImageViews; }
 	VkFormat GetImageFormat() { return m_SwapChainImageFormat; }
+	VkExtent2D GetExtent() { return m_SwapChainExtent; }
+	VkSwapchainKHR GetSwapChain() { return m_SwapChain; }
 
 private:
 	void CreateSwapChain(VulkanDevice* Device, VulkanPhysicalDevice* PhysicalDevice, VulkanSurface* Surface);

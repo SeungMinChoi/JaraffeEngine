@@ -26,6 +26,10 @@
     <ClCompile Include="Core\File\GenericFile.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.cpp" />
     <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanPipeline.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanFrameBuffer.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanCommandPool.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanCommandBuffer.cpp" />
+    <ClCompile Include="Core\GraphicDevice\Vulkan\VulkanSemaphore.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -51,5 +55,9 @@
     <ClInclude Include="Core\File\GenericFile.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanShaderModule.h" />
     <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanPipeline.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanFrameBuffer.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanCommandPool.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanCommandBuffer.h" />
+    <ClInclude Include="Core\GraphicDevice\Vulkan\VulkanSemaphore.h" />
   </ItemGroup>
 </Project>
