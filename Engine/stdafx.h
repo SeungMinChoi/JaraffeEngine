@@ -21,8 +21,13 @@
 #include "Common/GlobalMacro.h"
 
 //
-#include "Core/AppWindow/GenericWindow.h"
-#include "Core/GraphicDevice/GenericGraphicDevice.h"
+#include "Core/HAL/File/GenericFile.h"
+
+#include "Core/HAL/AppWindow/GenericWindow.h"
+
+#include "Core/RHI/RHIDefinitions.h"
+#include "Core/RHI/DynamicRHI.h"
+
 #include "Core/CoreGlobal.h"
 
 #if USE_VULKAN

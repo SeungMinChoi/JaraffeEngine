@@ -1,7 +1,7 @@
 #include "stdafx.h"
 #include "CoreGlobal.h"
 
-#include "Memory/Memory.h"
+#include "HAL/Memory/Memory.h"
 
 Memory GMemory;
 
