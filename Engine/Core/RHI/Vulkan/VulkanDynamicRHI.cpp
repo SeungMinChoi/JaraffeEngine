@@ -177,7 +177,9 @@ void VulkanDynamicRHI::CreateDefalutPipeline()
 
     m_Pipeline->CreateInputAssemblyState(VK_PRIMITIVE_TOPOLOGY_TRIANGLE_LIST, VK_FALSE);
 
-    m_Pipeline->CreateVertexInputState();
+    std::vector<VertexDescription> vertexDescriptions;
+    vertexDescriptions.push_back(VertexLayout::PosColor::GetVertexDescription());
+    m_Pipeline->CreateVertexInputState(vertexDescriptions);
 
     m_Pipeline->CreateRasterizationState();
 

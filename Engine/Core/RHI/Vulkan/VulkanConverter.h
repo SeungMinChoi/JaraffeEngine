@@ -1,6 +1,6 @@
 #pragma once
 
-static inline VkFormat JFToVkFormat(EVertexElementType Type)
+static inline VkFormat JFToVkFormat(VertexElementType Type)
 {
     switch (Type)
     {

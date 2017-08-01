@@ -171,8 +171,8 @@
     <ClCompile Include="Core\RHI\Vulkan\VulkanCommandPool.cpp" />
     <ClCompile Include="Core\RHI\Vulkan\VulkanCommandBuffer.cpp" />
     <ClCompile Include="Core\RHI\Vulkan\VulkanSemaphore.cpp" />
-    <ClCompile Include="Core\RHI\VertexLayout\VertexLayout.cpp" />
     <ClCompile Include="Core\RHI\Vulkan\VulkanDynamicRHI.cpp" />
+    <ClCompile Include="Core\RHI\VertexLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -205,8 +205,8 @@
     <ClInclude Include="Core\RHI\Vulkan\VulkanCommandPool.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanCommandBuffer.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanSemaphore.h" />
-    <ClInclude Include="Core\RHI\VertexLayout\VertexLayout.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanDynamicRHI.h" />
+    <ClInclude Include="Core\RHI\VertexLayout.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

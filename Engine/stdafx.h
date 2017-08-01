@@ -26,6 +26,7 @@
 #include "Core/HAL/AppWindow/GenericWindow.h"
 
 #include "Core/RHI/RHIDefinitions.h"
+#include "Core/RHI/VertexLayout.h"
 #include "Core/RHI/DynamicRHI.h"
 
 #include "Core/CoreGlobal.h"

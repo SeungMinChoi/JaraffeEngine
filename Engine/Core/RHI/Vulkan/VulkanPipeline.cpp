@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "VulkanPipeline.h"
 
+#include "VulkanConverter.h"
+
 #include "VulkanDevice.h"
 #include "VulkanShaderModule.h"
 #include "VulkanSwapchain.h"
@@ -50,13 +52,43 @@ void VulkanPipeline::CreateInputAssemblyState(const VkPrimitiveTopology Primitiv
 	m_InputAssemblyState.primitiveRestartEnable = PrimitiveRestartEnable;
 }
 
-void VulkanPipeline::CreateVertexInputState()
+void VulkanPipeline::CreateVertexInputState(std::vector<VertexDescription>& VertexDescriptions)
 {
+    // TODO : 여기 파이프라인 정리되면 정리하기;;
+    std::vector<VkVertexInputBindingDescription> bindingDescription(VertexDescriptions.size());
+    std::vector<VkVertexInputAttributeDescription> attributeDescriptions;
+
+    uint32_t bindingDescriptionCount = 0;
+    uint32_t attributeDescriptionsCount = 0;
+    for(uint32_t i = 0; i < VertexDescriptions.size(); ++i)
+    {
+        bindingDescription[i].binding = i;
+        bindingDescription[i].stride = VertexDescriptions[i].stride;
+        bindingDescription[i].inputRate = VK_VERTEX_INPUT_RATE_VERTEX;
+
+        for (uint32_t j = 0; j < VertexDescriptions[i].attributes.size(); ++j)
+        {
+            VkVertexInputAttributeDescription attributeDescription;
+            attributeDescription.binding = i;
+            attributeDescription.location = VertexDescriptions[i].attributes[j].location;
+            attributeDescription.offset = VertexDescriptions[i].attributes[j].offset;
+            attributeDescription.format = JFToVkFormat(VertexDescriptions[i].attributes[j].format);
+
+            attributeDescriptions.push_back(attributeDescription);
+
+            ++attributeDescriptionsCount;
+        }
+
+        ++bindingDescriptionCount;
+    }
+
 	m_VertexInputState.sType = VK_STRUCTURE_TYPE_PIPELINE_VERTEX_INPUT_STATE_CREATE_INFO;
-	m_VertexInputState.vertexBindingDescriptionCount = 0;
-	m_VertexInputState.pVertexBindingDescriptions = nullptr; // Optional
-	m_VertexInputState.vertexAttributeDescriptionCount = 0;
-	m_VertexInputState.pVertexAttributeDescriptions = nullptr; // Optional
+
+	m_VertexInputState.vertexBindingDescriptionCount = bindingDescriptionCount;
+	m_VertexInputState.vertexAttributeDescriptionCount = attributeDescriptionsCount;
+
+	m_VertexInputState.pVertexBindingDescriptions = bindingDescription.data(); // Optional
+	m_VertexInputState.pVertexAttributeDescriptions = attributeDescriptions.data(); // Optional
 }
 
 void VulkanPipeline::CreateRasterizationState(

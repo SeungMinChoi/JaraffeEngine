@@ -22,7 +22,7 @@ public:
 
 	void CreateInputAssemblyState(const VkPrimitiveTopology PrimitiveTopology, const bool PrimitiveRestartEnable);
 
-	void CreateVertexInputState();
+	void CreateVertexInputState(std::vector<VertexDescription>& VertexDescriptions);
 
 	void CreateRasterizationState(
 		const VkPolygonMode PolygonMode = VK_POLYGON_MODE_FILL

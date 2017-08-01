@@ -29,9 +29,9 @@
     <ClCompile Include="Core\HAL\Memory\Allocator\System\SystemAllocator.cpp" />
     <ClCompile Include="Core\HAL\Memory\Allocator\TBB\TBBAllocator.cpp" />
     <ClCompile Include="Core\HAL\Memory\Memory.cpp" />
-    <ClCompile Include="Core\RHI\VertexLayout\VertexLayout.cpp" />
     <ClCompile Include="Core\RHI\DynamicRHI.cpp" />
     <ClCompile Include="Core\RHI\Vulkan\VulkanDynamicRHI.cpp" />
+    <ClCompile Include="Core\RHI\VertexLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Shaders\Color.frag" />
@@ -60,11 +60,11 @@
     <ClInclude Include="Core\HAL\Memory\Allocator\System\SystemAllocator.h" />
     <ClInclude Include="Core\HAL\Memory\Allocator\TBB\TBBAllocator.h" />
     <ClInclude Include="Core\HAL\Memory\Memory.h" />
-    <ClInclude Include="Core\RHI\VertexLayout\VertexLayout.h" />
     <ClInclude Include="Core\RHI\DynamicRHI.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanDynamicRHI.h" />
     <ClInclude Include="Core\RHI\RHIDefinitions.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanConfiguration.h" />
     <ClInclude Include="Core\RHI\Vulkan\VulkanConverter.h" />
+    <ClInclude Include="Core\RHI\VertexLayout.h" />
   </ItemGroup>
 </Project>

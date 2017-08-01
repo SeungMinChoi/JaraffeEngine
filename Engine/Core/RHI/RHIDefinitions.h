@@ -24,3 +24,6 @@ enum VertexElementType
     VET_URGB10A2N,		// 10 bit r, g, b and 2 bit a normalized to (value/1023.0f, value/1023.0f, value/1023.0f, value/3.0f)
     VET_MAX
 };
+
+/** The maximum number of vertex elements which can be used by a vertex declaration. */
+enum { MaxVertexElementCount = 16 };
